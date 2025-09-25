@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class BirdScript : MonoBehaviour
 {
     //TODO: Change to conform to expectations of teacher
@@ -8,12 +9,13 @@ public class BirdScript : MonoBehaviour
 
     public float flapStrength;
 
-    public Rigidbody2D RigidBody;
+    private Rigidbody2D rigidBody;
     private LogicScript logic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
@@ -21,7 +23,7 @@ public class BirdScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isAlive)
-            RigidBody.linearVelocity = Vector2.up * flapStrength;
+            rigidBody.linearVelocity = Vector2.up * flapStrength;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
