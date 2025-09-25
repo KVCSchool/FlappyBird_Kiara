@@ -26,9 +26,21 @@ public class BirdScript : MonoBehaviour
             rigidBody.linearVelocity = Vector2.up * flapStrength;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Die()
     {
         isAlive = false;
         logic.GameOver();
+    }
+
+    private void OnBecameInvisible()
+    {
+        //Die if offscreen
+
+        Die();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Die();
     }
 }
