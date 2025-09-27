@@ -10,13 +10,13 @@ public class BirdScript : MonoBehaviour
     public float flapStrength;
 
     private Rigidbody2D rigidBody;
-    private LogicScript logic;
+    private GameLogicScript gameLogic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        gameLogic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogicScript>();
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class BirdScript : MonoBehaviour
     private void Die()
     {
         isAlive = false;
-        logic.GameOver();
+        gameLogic.GameOver();
     }
 
     private void OnBecameInvisible()

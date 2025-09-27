@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LogicScript : MonoBehaviour
+public class GameLogicScript : MonoBehaviour
 {
     //TODO: Change to conform to expectations of teacher
 

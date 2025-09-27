@@ -861,8 +861,8 @@ GameObject:
   - component: {fileID: 1913967032}
   - component: {fileID: 1913967031}
   m_Layer: 0
-  m_Name: LogicManager
-  m_TagString: Logic
+  m_Name: GameLogicManager
+  m_TagString: GameLogic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1041,7 +1041,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   isAlive: 1
   flapStrength: 20
-  RigidBody: {fileID: 2012221837}
 --- !u!58 &2012221836
 CircleCollider2D:
   m_ObjectHideFlags: 0

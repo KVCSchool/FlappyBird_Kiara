@@ -4,11 +4,11 @@ public class PipeMiddleScript : MonoBehaviour
 {
     //TODO: Change to conform to expectations of teacher
 
-    private LogicScript logic;
+    private GameLogicScript gameLogic;
 
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        gameLogic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogicScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,6 +16,6 @@ public class PipeMiddleScript : MonoBehaviour
         const int BirdLayer = 3;
 
         if (collision.gameObject.layer == BirdLayer)
-            logic.AddScore(1);
+            gameLogic.AddScore(1);
     }
 }
