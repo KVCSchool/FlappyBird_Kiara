@@ -1042,6 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   isAlive: 1
   flapStrength: 20
+  flapSound: {fileID: 8300000, guid: 06128d3907e33a64aaa4e4f9a88efca6, type: 3}
   collisionSound: {fileID: 8300000, guid: af5da113677606c4792543d299805ffa, type: 3}
 --- !u!58 &2012221836
 CircleCollider2D:

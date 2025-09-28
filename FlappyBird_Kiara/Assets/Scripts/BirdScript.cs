@@ -9,6 +9,7 @@ public class BirdScript : MonoBehaviour
 
     public float flapStrength;
 
+    public AudioClip flapSound;
     public AudioClip collisionSound;
 
     private Rigidbody2D rigidBody;
@@ -27,7 +28,14 @@ public class BirdScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isAlive)
-            rigidBody.linearVelocity = Vector2.up * flapStrength;
+            Flap();
+    }
+
+    // Flap bird wings and go up.
+    private void Flap()
+    {
+        rigidBody.linearVelocity = Vector2.up * flapStrength;
+        audioSource.PlayOneShot(flapSound);
     }
 
     private void Die()
