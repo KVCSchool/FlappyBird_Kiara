@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(AudioSource))]
 public class BirdScript : MonoBehaviour
 {
     //TODO: Change to conform to expectations of teacher
@@ -9,13 +9,17 @@ public class BirdScript : MonoBehaviour
 
     public float flapStrength;
 
+    public AudioClip collisionSound;
+
     private Rigidbody2D rigidBody;
+    private AudioSource audioSource;
     private GameLogicScript gameLogic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         gameLogic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogicScript>();
     }
 
@@ -35,12 +39,23 @@ public class BirdScript : MonoBehaviour
     private void OnBecameInvisible()
     {
         //Die if offscreen
+        //FIXME: causes an error on exit due this being called after stopping the game (game over screen is enabled after it's been destroyed)
 
-        Die();
+        if (isAlive)
+        {
+            //act like we hit something offscreen
+            audioSource.PlayOneShot(collisionSound);
+
+            Die();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Die();
+        if (isAlive)
+        {
+            audioSource.PlayOneShot(collisionSound);
+            Die();
+        }
     }
 }
