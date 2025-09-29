@@ -14,6 +14,7 @@ public class BirdScript : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private AudioSource audioSource;
+    private Animator animator;
     private GameLogicScript gameLogic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +22,7 @@ public class BirdScript : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
         gameLogic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogicScript>();
     }
 
@@ -48,6 +50,7 @@ public class BirdScript : MonoBehaviour
     {
         rigidBody.linearVelocity = Vector2.up * flapStrength;
         audioSource.PlayOneShot(flapSound);
+        animator.SetTrigger("Flap");
     }
 
     private void Die()
