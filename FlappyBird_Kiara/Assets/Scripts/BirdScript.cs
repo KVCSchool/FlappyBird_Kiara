@@ -27,6 +27,18 @@ public class BirdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float minY = Camera.main.transform.position.y - Camera.main.orthographicSize - 3.0f;
+
+        //OnBecameInvisible() does not work, as we don't have a sprite renderer
+        //in the player gameobject with this script
+        //Upper bound is handled by ceiling
+        //act like we hit something offscreen
+        if (transform.position.y < minY && isAlive)
+        {
+            audioSource.PlayOneShot(collisionSound);
+            Die();
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && isAlive)
             Flap();
     }
@@ -42,20 +54,6 @@ public class BirdScript : MonoBehaviour
     {
         isAlive = false;
         gameLogic.GameOver();
-    }
-
-    private void OnBecameInvisible()
-    {
-        //Die if offscreen
-        //FIXME: causes an error on exit due this being called after stopping the game (game over screen is enabled after it's been destroyed)
-
-        if (isAlive)
-        {
-            //act like we hit something offscreen
-            audioSource.PlayOneShot(collisionSound);
-
-            Die();
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
